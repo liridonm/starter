@@ -10,6 +10,7 @@ import com.boilerplate.starter.exception.ServiceException;
 import com.boilerplate.starter.service.ConfirmationEmailService;
 import com.boilerplate.starter.service.UserService;
 import com.boilerplate.starter.util.JwtUtil;
+import io.jsonwebtoken.lang.Assert;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,7 +57,7 @@ public class AuthenticateController {
         String username = authenticationRequest.getUsername();
         User foundUser = userService.readByUsername(username);
 
-        assert foundUser != null : "This account does not exists!";
+        Assert.isTrue(foundUser != null, "This account does not exists!");
         if (!foundUser.getIsVerified()) {
             throw new ServiceException("Please verify your user!");
         }
