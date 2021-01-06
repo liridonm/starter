@@ -8,9 +8,9 @@ spring:
   profiles:
     active: default
   datasource:
-    url: jdbc:postgresql://localhost:5432/starter
-    username: postgres
-    password: admin
+    url: jdbc:postgresql://localhost:5432/db_name
+    username: USERNAME
+    password: PASSWORD
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
   jpa:
@@ -45,11 +45,11 @@ spring:
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000
-    username: cydevacc@gmail.com
-    password: Devmail.
+    username: EMAIL
+    password: PASSWORD
 security:
   jwt:
-    secret-key: ihcTmpBoN8Pww9EebY3OZowzR5HAm0ADpPIomN8nuk
+    secret-key: JWT-SECRET-KEY
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
