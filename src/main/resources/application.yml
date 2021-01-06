@@ -1,0 +1,59 @@
+app:
+  local-url: http://localhost:${server.port}
+server:
+  port: 8080
+spring:
+  application:
+    name: starter
+  profiles:
+    active: default
+  datasource:
+    url: jdbc:postgresql://localhost:5432/starter
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  flyway:
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    url: ${spring.datasource.url}
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    connect-retries: 3
+    enabled: false
+    baseline-version: 1.0.0
+    baseline-description: Baseline
+    check-location: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          starttls:
+            enabled: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+    username: cydevacc@gmail.com
+    password: Devmail.
+security:
+  jwt:
+    secret-key: ihcTmpBoN8Pww9EebY3OZowzR5HAm0ADpPIomN8nuk
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-exclude: com.boilerplate.starter.domain
+
+
+
